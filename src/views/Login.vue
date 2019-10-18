@@ -1,12 +1,24 @@
 <template>
-  <div class="login">
-    <p>Please enter your Flowroute API Credentials:</p>
-    <form @submit.prevent="login">
-      <input type="text" v-model="accessKey"/>
-      <input type="password" v-model="secretKey"/>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <v-dialog persistent v-model="dialog" width="400">
+    <v-card>
+           <v-form @submit.prevent="login">
+     <v-card-title>
+        <span class="headline">Flowroute API Credentials</span>
+      </v-card-title>
+      <v-card-text>
+        <v-container>
+            <v-text-field label="Access Key" autofocus v-model="accessKey" :rules="required"></v-text-field>
+            <v-text-field label="Secret Key" type="password" v-model="secretKey" :rules="required"></v-text-field>
+            <small>*indicates required field</small>
+        </v-container>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn type="submit">Login</v-btn>
+      </v-card-actions>
+                </v-form>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -14,30 +26,15 @@ export default {
   data() {
     return {
       accessKey: null,
-      secretKey: null
-    }
+      secretKey: null,
+      dialog: true,
+      required: [v => !!v || "*Required"]
+    };
   },
   methods: {
     login() {
-      this.$emit('login', this)
+      this.$emit("login", this);
     }
   }
-}
+};
 </script>
-
-<style scoped lang="scss">
-h1 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
