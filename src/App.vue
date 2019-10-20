@@ -19,7 +19,9 @@
 
     <v-content>
       <v-container class="fill-height" fluid>
-        <MessageList v-if="isAuthenticated" :client="client" />
+        <MessageStore v-if="isAuthenticated" :client="client">
+          <MessageList slot-scope="{ messages, error, loading }" :messages="messages" :error="error" :loading="loading"/>
+        </MessageStore>
         <div v-else>
           <v-overlay opacity="0.7"></v-overlay>
           <Login @login="login"/>
@@ -37,21 +39,21 @@
 import FlowrouteSMS from "flowroute-sms";
 import Login from "@/views/Login.vue";
 import MessageList from "@/views/MessageList.vue";
+import MessageStore from "@/models/MessageStore.vue";
 
 export default {
   name: "App",
   components: {
     Login,
-    MessageList
+    MessageList,
+    MessageStore,
   },
   props: {
     source: String
   },
-
   data: () => ({
     credentials: {},
   }),
-
   created() {
     this.$vuetify.theme.dark = true;
   },

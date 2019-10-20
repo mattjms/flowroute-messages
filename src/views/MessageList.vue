@@ -17,27 +17,14 @@ export default {
     Message
   },
   props: {
-    client: null
+    loading: Boolean,
+    error: String,
+    messages: Array,
   },
   data() {
     return {
-      loading: true,
-      messages: []
     };
   },
-  created() {
-    if (this.client) {
-      let start = "2016-06-03";
-      let end = new Date();
-      let limit = 100;
-      let offset = 0;
-
-      this.client.search(start, end, limit, offset).then(results => {
-        this.messages = results;
-        this.loading = false;
-      });
-    }
-  }
 };
 </script>
 
