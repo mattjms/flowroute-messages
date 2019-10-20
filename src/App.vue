@@ -10,14 +10,6 @@
             <v-list-item-title>All Messages</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="selectConversation">
-          <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>(dynamic)</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 

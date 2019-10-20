@@ -1,27 +1,21 @@
 <template>
   <div>
     <p v-if="loading">Loading...</p>
-    <table v-else>
-      <thead>
-        <tr>
-          <th>From</th>
-          <th>Received</th>
-          <th>Message Text</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="message in messages" :key="message.id">
-          <td>{{ message.attributes.from }}</td>
-          <td>{{ message.attributes.timestamp }}</td>
-          <td>{{ message.attributes.body }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <v-timeline v-else>
+      <v-timeline-item v-for="message in messages" :key="message.id" :left="message.attributes.direction === 'inbound'">
+        <Message :message="message"/>
+      </v-timeline-item>
+    </v-timeline>
   </div>
 </template>
 
 <script>
+import Message from "@/components/Message.vue";
+
 export default {
+  components: {
+    Message
+  },
   props: {
     client: null
   },
@@ -38,11 +32,10 @@ export default {
       let limit = 100;
       let offset = 0;
 
-      this.client.search(start, end, limit, offset).
-      then((results) => {
-        this.messages = results
-        this.loading = false
-      })
+      this.client.search(start, end, limit, offset).then(results => {
+        this.messages = results;
+        this.loading = false;
+      });
     }
   }
 };
