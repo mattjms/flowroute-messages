@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer app clipped permanent>
+    <v-navigation-drawer app clipped permanent width="192">
       <v-list dense>
         <v-list-item @click="selectConversation">
           <v-list-item-action>
