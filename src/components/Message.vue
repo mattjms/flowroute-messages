@@ -1,8 +1,8 @@
 <template>
   <v-card>
-    <v-card-title>{{ message.attributes.from }}</v-card-title>
-    <v-card-subtitle>{{ message.attributes.timestamp }}</v-card-subtitle>
-    <v-card-text>{{ message.attributes.body }}</v-card-text>
+    <v-img v-if="message.data.attributes.has_mms" :src="imageSrc"/>
+    <v-card-title>{{ message.data.attributes.from }}</v-card-title>
+    <v-card-text>{{ message.data.attributes.body }}</v-card-text>
   </v-card>
 </template>
 
@@ -10,6 +10,16 @@
 export default {
   props: {
     message: Object,
+  },
+  created() {
+    if (this.message.data.attributes.has_mms){
+      this.message.load() // we wish this would give us the attached images!
+    }
+  },
+  computed: {
+    imageSrc() {
+      return ''
+    },
   },
 }
 </script>

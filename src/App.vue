@@ -20,7 +20,9 @@
     <v-content>
       <v-container class="fill-height" fluid>
         <MessageStore v-if="isAuthenticated" :client="client">
-          <MessageList slot-scope="{ messages, error, loading }" :messages="messages" :error="error" :loading="loading"/>
+          <template v-slot="messageStore">
+            <MessageList :store="messageStore"/>
+          </template>
         </MessageStore>
         <div v-else>
           <v-overlay opacity="0.7"></v-overlay>
