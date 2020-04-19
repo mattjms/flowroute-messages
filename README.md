@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### Deploy
+```
+npx sls deploy
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -5,7 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      bash -c "rsync -arq /home/node/cache/node_modules/ /home/node/app/node_modules &&
+      bash -c "rsync -arq /home/node/app/.aws/ /home/node/.aws &&
+               rsync -arq /home/node/cache/node_modules/ /home/node/app/node_modules &&
                cp /home/node/cache/package-lock.json /home/node/app/package-lock.json &&
                npm run serve"
     volumes:
