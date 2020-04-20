@@ -36,5 +36,5 @@ resources:
               Effect: Allow
               Principal: "*"
               Action:
-              - s3:GetObject
-              Resource: !Join ['', ['arn:aws:s3:::', !Ref StaticSite, '/*']]
+                - s3:GetObject
+              Resource: !Join ["", ["arn:aws:s3:::", !Ref StaticSite, "/*"]]
