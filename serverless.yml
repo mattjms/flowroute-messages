@@ -38,3 +38,7 @@ resources:
               Action:
                 - s3:GetObject
               Resource: !Join ["", ["arn:aws:s3:::", !Ref StaticSite, "/*"]]
+  Outputs:
+    StaticSiteURL:
+      Description: "Flowroute Messages Website URL"
+      Value: !GetAtt [StaticSite, WebsiteURL]
